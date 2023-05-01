@@ -139,6 +139,7 @@
         let port = readQueryVariable('port', window.location.port);
         const password = readQueryVariable('password');
         const path = readQueryVariable('path', 'websockify');
+        const token = readQueryVariable('token', '');
 
         // | | |         | | |
         // | | | Connect | | |
@@ -158,6 +159,10 @@
             url += ':' + port;
         }
         url += '/' + path;
+	if(token) {
+	    url += '?token=' + token;
+	}
+	console.log('URL: ' + url)
 
         // Creating a new RFB object will start a new connection
         rfb = new RFB(document.getElementById('screen'), url,
